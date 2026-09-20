@@ -2,6 +2,21 @@ spring:
   application:
     name: orange
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${ORANGE_MAIL_USERNAME:}
+    password: ${ORANGE_MAIL_APP_PASSWORD:}
+    default-encoding: UTF-8
+
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+
 server:
   port: ${PORT:8080}
   forward-headers-strategy: framework
@@ -10,6 +25,13 @@ orange:
   supabase:
     url: ${SUPABASE_URL:}
     anon-key: ${SUPABASE_ANON_KEY:}
+    service-role-key: ${SUPABASE_SERVICE_ROLE_KEY:}
+
+  mail:
+    enabled: ${ORANGE_MAIL_ENABLED:false}
+    from-address: ${ORANGE_MAIL_FROM:orange.split.app@gmail.com}
+    from-name: ${ORANGE_MAIL_FROM_NAME:Orange}
+    app-url: ${ORANGE_APP_URL:http://localhost:8080}
 
 management:
   endpoints:
