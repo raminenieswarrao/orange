@@ -13,9 +13,14 @@ spring:
       mail:
         smtp:
           auth: true
+
           starttls:
             enable: true
             required: true
+
+          connectiontimeout: 10000
+          timeout: 15000
+          writetimeout: 15000
 
 server:
   port: ${PORT:8080}

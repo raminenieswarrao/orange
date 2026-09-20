@@ -11,6 +11,8 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Component
 public class ExpenseEmailOutboxProcessor {
@@ -51,8 +53,29 @@ public class ExpenseEmailOutboxProcessor {
             return;
         }
 
-        Arrays.stream(claimedItems)
-                .forEach(this::processItem);
+        /*
+         * Each email runs independently on a Java 21
+         * virtual thread.
+         *
+         * If one SMTP request is slow, the remaining
+         * recipients can still complete immediately.
+         */
+        try (
+                ExecutorService executor =
+                        Executors
+                                .newVirtualThreadPerTaskExecutor()
+        ) {
+            Arrays.stream(claimedItems)
+                    .forEach(
+                            item ->
+                                    executor.submit(
+                                            () ->
+                                                    processItem(
+                                                            item
+                                                    )
+                                    )
+                    );
+        }
     }
 
     private ExpenseEmailOutboxItem[] claimPendingItems() {

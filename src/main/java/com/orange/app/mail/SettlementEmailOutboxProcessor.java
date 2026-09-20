@@ -10,6 +10,8 @@ import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Component
 public class SettlementEmailOutboxProcessor {
@@ -50,15 +52,37 @@ public class SettlementEmailOutboxProcessor {
             return;
         }
 
-        Arrays.stream(claimedItems)
-                .forEach(this::processItem);
+        /*
+         * Each payment email is sent independently.
+         *
+         * A slow SMTP request for one recipient
+         * will not block the rest of the batch.
+         */
+        try (
+                ExecutorService executor =
+                        Executors
+                                .newVirtualThreadPerTaskExecutor()
+        ) {
+            Arrays.stream(claimedItems)
+                    .forEach(
+                            item ->
+                                    executor.submit(
+                                            () ->
+                                                    processItem(
+                                                            item
+                                                    )
+                                    )
+                    );
+        }
     }
 
     private SettlementEmailOutboxItem[] claimPendingItems() {
         return supabaseAdminClient
                 .restClient()
                 .post()
-                .uri("/rpc/claim_settlement_email_outbox")
+                .uri(
+                        "/rpc/claim_settlement_email_outbox"
+                )
                 .body(
                         Map.of(
                                 "p_limit",
@@ -161,10 +185,10 @@ public class SettlementEmailOutboxProcessor {
 
         } catch (Exception ignored) {
             /*
-             * If marking the failure itself fails,
-             * the recovery timeout in Supabase will
+             * If failure reporting itself fails,
+             * Supabase's recovery timeout will
              * eventually make the PROCESSING row
-             * eligible to be claimed again.
+             * eligible again.
              */
         }
     }
