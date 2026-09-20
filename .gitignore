@@ -1,0 +1,13 @@
+target/
+
+.idea/
+.vscode/
+.run/
+
+*.iml
+
+.env
+.env.*
+!.env.example
+
+.DS_Store

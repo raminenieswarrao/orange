@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" role="img" aria-labelledby="title">
+  <title id="title">Orange</title>
+  <defs>
+    <radialGradient id="fruit" cx="35%" cy="28%" r="75%">
+      <stop offset="0" stop-color="#ffbd57"/>
+      <stop offset=".42" stop-color="#ff7900"/>
+      <stop offset="1" stop-color="#dc4300"/>
+    </radialGradient>
+    <linearGradient id="leaf" x1="0" x2="1" y1="1" y2="0">
+      <stop stop-color="#207c42"/>
+      <stop offset="1" stop-color="#62bb55"/>
+    </linearGradient>
+  </defs>
+  <circle cx="96" cy="105" r="70" fill="url(#fruit)"/>
+  <path d="M98 36c16-23 43-25 57-12-8 22-33 34-55 22Z" fill="url(#leaf)"/>
+  <path d="M96 42c0-14 5-24 14-33" fill="none" stroke="#4d6e26" stroke-width="8" stroke-linecap="round"/>
+  <path d="M96 43v124" stroke="#ffd089" stroke-width="5" stroke-linecap="round" opacity=".9"/>
+  <circle cx="70" cy="78" r="12" fill="#fff" opacity=".22"/>
+</svg>

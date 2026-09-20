@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: orange
+
+server:
+  port: ${PORT:8080}
+  forward-headers-strategy: framework
+
+orange:
+  supabase:
+    url: ${SUPABASE_URL:}
+    anon-key: ${SUPABASE_ANON_KEY:}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

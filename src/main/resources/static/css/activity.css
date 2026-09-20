@@ -1,0 +1,297 @@
+/*
+ * Activity page
+ */
+
+.activity-screen {
+    padding:
+        max(22px, env(safe-area-inset-top))
+        20px
+        calc(108px + env(safe-area-inset-bottom));
+
+    background:
+        linear-gradient(
+            180deg,
+            #fff8f2,
+            #fffdfb
+        );
+}
+
+.activity-header-spacer {
+    width: 44px;
+    height: 44px;
+}
+
+
+/*
+ * Activity list
+ */
+
+.activity-list {
+    display: grid;
+    gap: 11px;
+
+    margin-top: 18px;
+}
+
+
+/*
+ * Activity card
+ */
+
+.activity-card {
+    display: grid;
+
+    grid-template-columns:
+        46px
+        minmax(0, 1fr);
+
+    align-items: start;
+
+    gap: 12px;
+
+    padding: 15px;
+
+    border:
+        1px solid rgba(87, 53, 34, 0.09);
+
+    border-radius: 20px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 9px 24px
+        rgba(83, 39, 8, 0.055);
+
+    cursor: pointer;
+
+    outline: none;
+
+    transition:
+        border-color 160ms ease,
+        box-shadow 160ms ease,
+        transform 160ms ease;
+}
+
+.activity-card:hover {
+    border-color:
+        rgba(255, 107, 0, 0.24);
+
+    box-shadow:
+        0 13px 30px
+        rgba(83, 39, 8, 0.085);
+
+    transform: translateY(-1px);
+}
+
+.activity-card:active {
+    transform: translateY(0);
+}
+
+.activity-card:focus-visible {
+    border-color: #ff6b00;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(255, 107, 0, 0.12),
+        0 13px 30px
+        rgba(83, 39, 8, 0.085);
+}
+
+
+/*
+ * Activity icon
+ */
+
+.activity-icon {
+    display: grid;
+
+    width: 46px;
+    height: 46px;
+
+    place-items: center;
+
+    border-radius: 15px;
+
+    font-size: 1rem;
+    font-weight: 900;
+}
+
+.activity-icon.expense {
+    color: #df5d0c;
+
+    background: #fff0e4;
+}
+
+.activity-icon.payment {
+    color: #16835c;
+
+    background: #eaf8f2;
+}
+
+
+/*
+ * Activity copy
+ */
+
+.activity-copy {
+    min-width: 0;
+}
+
+.activity-title-row {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        auto;
+
+    align-items: start;
+
+    gap: 12px;
+}
+
+.activity-title-row > strong {
+    min-width: 0;
+
+    overflow: hidden;
+
+    color: #352117;
+
+    font-size: 0.88rem;
+    line-height: 1.35;
+
+    text-overflow: ellipsis;
+}
+
+.activity-amount {
+    color: #df5d0c;
+
+    font-size: 0.82rem;
+    font-weight: 900;
+
+    white-space: nowrap;
+}
+
+.activity-amount.payment {
+    color: #15835b;
+}
+
+.activity-copy > p {
+    margin: 5px 0 0;
+
+    color: #8d776a;
+
+    font-size: 0.73rem;
+    line-height: 1.4;
+}
+
+.activity-copy > .activity-note {
+    overflow-wrap: anywhere;
+
+    color: #655146;
+
+    font-style: italic;
+}
+
+.activity-date {
+    display: block;
+
+    margin-top: 7px;
+
+    color: #aa9487;
+
+    font-size: 0.67rem;
+    font-weight: 700;
+}
+
+
+/*
+ * Empty Activity state
+ */
+
+.activity-empty {
+    padding: 38px 22px;
+
+    border:
+        1px dashed
+        rgba(255, 107, 0, 0.27);
+
+    border-radius: 26px;
+
+    background:
+        rgba(255, 250, 246, 0.76);
+
+    text-align: center;
+}
+
+.activity-empty-icon {
+    display: grid;
+
+    width: 56px;
+    height: 56px;
+
+    place-items: center;
+
+    margin: 0 auto;
+
+    border-radius: 18px;
+
+    color: #e65b05;
+
+    background: #fff0e4;
+
+    font-size: 1.4rem;
+    font-weight: 900;
+}
+
+.activity-empty h2 {
+    margin: 14px 0 6px;
+
+    color: #352117;
+
+    font-size: 1.08rem;
+}
+
+.activity-empty p {
+    max-width: 280px;
+
+    margin: 0 auto;
+
+    color: #887165;
+
+    font-size: 0.82rem;
+    line-height: 1.5;
+}
+
+
+/*
+ * Small phones
+ */
+
+@media (max-width: 380px) {
+    .activity-card {
+        grid-template-columns:
+            42px
+            minmax(0, 1fr);
+
+        gap: 10px;
+
+        padding: 13px;
+    }
+
+    .activity-icon {
+        width: 42px;
+        height: 42px;
+
+        border-radius: 14px;
+    }
+
+    .activity-title-row {
+        grid-template-columns: 1fr;
+
+        gap: 5px;
+    }
+
+    .activity-amount {
+        justify-self: start;
+    }
+}

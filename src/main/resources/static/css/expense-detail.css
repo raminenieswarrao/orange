@@ -1,0 +1,431 @@
+.expense-detail-screen {
+    padding-bottom: 110px;
+}
+
+.expense-detail-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 16px 28px;
+}
+
+
+/*
+ * Expense Details header
+ */
+
+.expense-detail-screen .page-header {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: center;
+    column-gap: 14px;
+    row-gap: 14px;
+}
+
+.expense-detail-header-actions {
+    display: grid;
+    width: 100%;
+    grid-column: 1 / -1;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.expense-action-button {
+    display: inline-flex;
+    min-height: 46px;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 0 16px;
+    border: 1px solid transparent;
+    border-radius: 15px;
+    cursor: pointer;
+    font: inherit;
+    font-size: 14px;
+    font-weight: 850;
+    transition:
+        background-color 150ms ease,
+        border-color 150ms ease,
+        box-shadow 150ms ease,
+        color 150ms ease,
+        opacity 150ms ease,
+        transform 150ms ease;
+}
+
+.expense-action-button::before {
+    font-size: 16px;
+    line-height: 1;
+}
+
+.expense-action-button.edit {
+    border-color: #ff6b00;
+    background:
+        linear-gradient(
+            135deg,
+            #ff7a18,
+            #f45100
+        );
+    box-shadow:
+        0 8px 20px rgba(239, 75, 0, 0.18);
+    color: #ffffff;
+}
+
+.expense-action-button.edit::before {
+    content: "✎";
+}
+
+.expense-action-button.edit:hover {
+    background:
+        linear-gradient(
+            135deg,
+            #ff8629,
+            #e94700
+        );
+    box-shadow:
+        0 10px 24px rgba(239, 75, 0, 0.25);
+}
+
+.expense-action-button.delete {
+    border-color: rgba(201, 52, 28, 0.28);
+    background: #fff4f1;
+    color: #c9341c;
+}
+
+.expense-action-button.delete::before {
+    content: "⌫";
+}
+
+.expense-action-button.delete:hover {
+    border-color: rgba(201, 52, 28, 0.48);
+    background: #ffe5df;
+}
+
+.expense-action-button:active {
+    transform: scale(0.98);
+}
+
+.expense-action-button:focus-visible {
+    outline: 3px solid rgba(255, 107, 0, 0.22);
+    outline-offset: 2px;
+}
+
+.expense-action-button:disabled {
+    cursor: default;
+    box-shadow: none;
+    opacity: 0.42;
+    transform: none;
+}
+
+
+/*
+ * Orange expense hero
+ */
+
+.expense-detail-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    padding: 28px 20px 20px;
+    border-radius: 28px;
+    background:
+        radial-gradient(
+            circle at 100% 0,
+            rgba(255, 255, 255, 0.18) 0,
+            rgba(255, 255, 255, 0.18) 82px,
+            transparent 83px
+        ),
+        linear-gradient(
+            135deg,
+            #ff7a18 0%,
+            #ef4b00 100%
+        );
+    box-shadow:
+        0 18px 40px rgba(239, 75, 0, 0.18);
+    color: #ffffff;
+    text-align: center;
+}
+
+.expense-detail-icon {
+    display: grid;
+    width: 64px;
+    height: 64px;
+    margin-bottom: 16px;
+    place-items: center;
+    border: 2px solid rgba(255, 255, 255, 0.55);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.14);
+    color: #ffffff;
+    font-size: 28px;
+    font-weight: 900;
+}
+
+.expense-detail-date {
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.expense-detail-hero h2 {
+    margin: 0 0 8px;
+    overflow-wrap: anywhere;
+    color: #ffffff;
+    font-size: 25px;
+    line-height: 1.2;
+}
+
+.expense-detail-total {
+    display: block;
+    margin-bottom: 8px;
+    color: #ffffff;
+    font-size: 40px;
+    line-height: 1.1;
+}
+
+.expense-detail-hero > p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 15px;
+}
+
+
+/*
+ * Current user's share and result
+ */
+
+.expense-detail-personal-summary {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    overflow: hidden;
+    margin-top: 22px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.24);
+    backdrop-filter: blur(10px);
+}
+
+.expense-detail-personal-result {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 13px 10px;
+    background: rgba(255, 255, 255, 0.93);
+}
+
+.expense-detail-personal-summary
+.expense-detail-personal-result:first-child {
+    border-right: 1px solid #f2ded2;
+}
+
+.expense-detail-personal-result span {
+    color: #896f61;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+}
+
+.expense-detail-personal-result strong {
+    overflow: hidden;
+    max-width: 100%;
+    color: #2e1b12;
+    font-size: 16px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.expense-detail-personal-result.positive strong {
+    color: #00885c;
+}
+
+.expense-detail-personal-result.negative strong {
+    color: #dc4a10;
+}
+
+.expense-detail-personal-result.settled strong {
+    color: #6f5b4f;
+}
+
+.expense-detail-hero >
+.expense-detail-personal-result {
+    width: calc(100% - 20px);
+    margin-top: 22px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.93);
+}
+
+
+/*
+ * Expense summary
+ */
+
+.expense-detail-summary {
+    overflow: hidden;
+    border: 1px solid #f0e2d9;
+    border-radius: 24px;
+    background: #ffffff;
+    box-shadow:
+        0 12px 30px rgba(85, 43, 19, 0.07);
+}
+
+.expense-detail-summary-row {
+    display: flex;
+    min-height: 54px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 0 18px;
+    border-bottom: 1px solid #f4e9e2;
+}
+
+.expense-detail-summary-row:last-child {
+    border-bottom: 0;
+}
+
+.expense-detail-summary-row span {
+    color: #876f61;
+    font-size: 14px;
+}
+
+.expense-detail-summary-row strong {
+    color: #24140d;
+    font-size: 14px;
+    text-align: right;
+}
+
+
+/*
+ * Notes and split details
+ */
+
+.expense-detail-section {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.expense-detail-label {
+    color: #876f61;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.expense-detail-notes {
+    margin: 0;
+    padding: 18px;
+    border: 1px solid #f0e2d9;
+    border-radius: 20px;
+    background: #ffffff;
+    color: #513a2e;
+    font-size: 15px;
+    line-height: 1.55;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+}
+
+.expense-share-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.expense-share-person {
+    min-height: 72px;
+}
+
+.expense-share-person.current-user {
+    border-color: #ffb487;
+    background: #fff8f3;
+}
+
+.expense-share-amount {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 3px;
+    margin-left: 10px;
+}
+
+.expense-share-amount span {
+    color: #9a8274;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.expense-share-amount small {
+    color: #e45b0b;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+.expense-share-amount strong {
+    color: #24140d;
+    font-size: 15px;
+    white-space: nowrap;
+}
+
+.expense-share-person.current-user
+.expense-share-amount strong {
+    color: #ef4b00;
+}
+
+
+/*
+ * Small mobile screens
+ */
+
+@media (max-width: 380px) {
+    .expense-detail-content {
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+
+    .expense-detail-screen .page-header {
+        column-gap: 10px;
+        row-gap: 12px;
+    }
+
+    .expense-detail-header-actions {
+        gap: 8px;
+    }
+
+    .expense-action-button {
+        min-height: 43px;
+        padding-right: 10px;
+        padding-left: 10px;
+        border-radius: 13px;
+        font-size: 13px;
+    }
+
+    .expense-detail-hero {
+        padding-right: 14px;
+        padding-left: 14px;
+    }
+
+    .expense-detail-total {
+        font-size: 34px;
+    }
+
+    .expense-detail-personal-result {
+        padding-right: 6px;
+        padding-left: 6px;
+    }
+
+    .expense-detail-personal-result strong {
+        font-size: 14px;
+    }
+
+    .expense-detail-summary-row {
+        padding-right: 14px;
+        padding-left: 14px;
+    }
+}

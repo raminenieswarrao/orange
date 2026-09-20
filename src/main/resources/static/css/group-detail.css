@@ -1,0 +1,1186 @@
+/*
+ * Group details page
+ */
+
+.group-detail-screen {
+    padding-bottom: 96px;
+}
+
+.group-detail-hero {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 20px;
+    padding: 24px;
+    border-radius: 28px;
+    background:
+        linear-gradient(
+            145deg,
+            #ff7a16,
+            #f45100
+        );
+    color: #ffffff;
+    box-shadow:
+        0 18px 42px rgba(197, 73, 0, 0.22);
+}
+
+.group-detail-hero::after {
+    position: absolute;
+    top: -45px;
+    right: -45px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.12);
+    content: "";
+}
+
+.group-detail-icon {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    width: 62px;
+    height: 62px;
+    place-items: center;
+    overflow: hidden;
+    margin-bottom: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.42);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+    font-size: 1.35rem;
+    font-weight: 900;
+}
+
+.group-detail-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.group-detail-hero h2 {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    font-size: 1.55rem;
+    line-height: 1.2;
+}
+
+.group-detail-description {
+    position: relative;
+    z-index: 1;
+    margin: 8px 0 0;
+    color: rgba(255, 255, 255, 0.86);
+    font-size: 0.88rem;
+    line-height: 1.5;
+}
+
+.group-detail-currency {
+    position: absolute;
+    z-index: 1;
+    top: 24px;
+    right: 24px;
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    padding: 0 12px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 850;
+    backdrop-filter: blur(8px);
+}
+
+.group-balance-card {
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1fr)
+        auto;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 20px;
+    padding: 19px 20px;
+    border: 1px solid rgba(87, 53, 34, 0.1);
+    border-radius: 22px;
+    background: #ffffff;
+    box-shadow:
+        0 12px 30px rgba(83, 39, 8, 0.07);
+}
+
+.group-balance-copy {
+    min-width: 0;
+}
+
+.group-balance-copy span {
+    display: block;
+    color: #8b7466;
+    font-size: 0.76rem;
+    font-weight: 750;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.group-balance-copy strong {
+    display: block;
+    margin-top: 5px;
+    color: #332017;
+    font-size: 1.4rem;
+}
+
+.group-balance-copy strong.positive {
+    color: #15835b;
+}
+
+.group-balance-copy strong.negative {
+    color: #d94b32;
+}
+
+
+/*
+ * Balance breakdown toggle
+ */
+
+.group-balance-breakdown-toggle {
+    margin-top: 8px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #e25d08;
+    font: inherit;
+    font-size: 0.76rem;
+    font-weight: 850;
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-color:
+        rgba(226, 93, 8, 0.28);
+    text-underline-offset: 3px;
+}
+
+.group-balance-breakdown-toggle:hover {
+    color: #c84e00;
+    text-decoration-color:
+        rgba(200, 78, 0, 0.55);
+}
+
+.group-balance-breakdown-toggle:focus-visible {
+    outline: none;
+    border-radius: 6px;
+    box-shadow:
+        0 0 0 4px rgba(255, 107, 0, 0.11);
+}
+
+.group-balance-breakdown[hidden] {
+    display: none;
+}
+
+
+/*
+ * Group balance actions
+ */
+
+.group-balance-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.group-balance-actions button {
+    min-height: 44px;
+    white-space: nowrap;
+}
+
+.group-balance-actions .primary-button {
+    padding: 0 17px;
+}
+
+.group-balance-actions .secondary-button {
+    padding: 0 16px;
+    border: 1px solid rgba(240, 91, 0, 0.2);
+    border-radius: 14px;
+    background: #fff4eb;
+    color: #df5d0c;
+    font-size: 0.82rem;
+    font-weight: 850;
+    cursor: pointer;
+    transition:
+        background 160ms ease,
+        border-color 160ms ease,
+        color 160ms ease,
+        transform 160ms ease;
+}
+
+.group-balance-actions .secondary-button:hover {
+    border-color: rgba(240, 91, 0, 0.34);
+    background: #ffead9;
+    color: #c94e00;
+}
+
+.group-balance-actions .secondary-button:active {
+    transform: translateY(1px);
+}
+
+.group-balance-actions .secondary-button:focus-visible {
+    outline: none;
+    border-color: #ff6b00;
+    box-shadow:
+        0 0 0 4px rgba(255, 107, 0, 0.12);
+}
+
+
+/*
+ * Group sections
+ */
+
+.group-detail-section {
+    margin-top: 24px;
+}
+
+.group-detail-section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    margin-bottom: 12px;
+}
+
+.group-detail-section-header h2 {
+    margin: 0;
+    color: #2d1b12;
+    font-size: 1.05rem;
+}
+
+.group-detail-section-header span {
+    color: #8a7365;
+    font-size: 0.78rem;
+}
+
+.group-members-list {
+    display: grid;
+    gap: 10px;
+}
+
+.group-member-role {
+    display: inline-flex;
+    align-items: center;
+    min-height: 26px;
+    padding: 0 10px;
+    border-radius: 999px;
+    background: #f4eee9;
+    color: #735d50;
+    font-size: 0.7rem;
+    font-weight: 850;
+    letter-spacing: 0.02em;
+    text-transform: capitalize;
+}
+
+.group-member-role.owner {
+    background: #fff0e3;
+    color: #e35700;
+}
+
+
+/*
+ * Group management panel
+ */
+
+.group-management-panel {
+    display: grid;
+    gap: 18px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid rgba(255, 107, 0, 0.17);
+    border-radius: 24px;
+    background:
+        linear-gradient(
+            180deg,
+            #fffaf6,
+            #ffffff
+        );
+    box-shadow:
+        0 12px 30px rgba(83, 39, 8, 0.07);
+}
+
+.group-management-panel[hidden] {
+    display: none;
+}
+
+.group-management-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.group-management-header-copy {
+    min-width: 0;
+}
+
+.group-management-header h2 {
+    margin: 0;
+    color: #2d1b12;
+    font-size: 1.08rem;
+}
+
+.group-management-header p {
+    margin: 5px 0 0;
+    color: #846f62;
+    font-size: 0.8rem;
+    line-height: 1.45;
+}
+
+.group-management-close {
+    display: grid;
+    flex: 0 0 auto;
+    width: 36px;
+    height: 36px;
+    place-items: center;
+    padding: 0;
+    border: 1px solid rgba(87, 53, 34, 0.11);
+    border-radius: 12px;
+    background: #ffffff;
+    color: #6f584b;
+    font: inherit;
+    font-size: 1.15rem;
+    cursor: pointer;
+}
+
+.group-management-close:hover {
+    border-color: rgba(255, 107, 0, 0.22);
+    background: #fff5ed;
+    color: #d95605;
+}
+
+.group-management-close:focus-visible {
+    outline: none;
+    border-color: #ff6b00;
+    box-shadow:
+        0 0 0 4px rgba(255, 107, 0, 0.11);
+}
+
+.group-management-section {
+    display: grid;
+    gap: 14px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(87, 53, 34, 0.09);
+}
+
+.group-management-section:first-of-type {
+    padding-top: 0;
+    border-top: 0;
+}
+
+.group-management-section-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.group-management-section-heading h3 {
+    margin: 0;
+    color: #352117;
+    font-size: 0.94rem;
+}
+
+.group-management-section-heading p {
+    max-width: 360px;
+    margin: 3px 0 0;
+    color: #8a7365;
+    font-size: 0.76rem;
+    line-height: 1.45;
+}
+
+.group-management-form {
+    display: grid;
+    gap: 14px;
+}
+
+.group-management-field {
+    display: grid;
+    gap: 7px;
+}
+
+.group-management-field label {
+    color: #493328;
+    font-size: 0.78rem;
+    font-weight: 850;
+}
+
+.group-management-field input,
+.group-management-field textarea,
+.group-management-field select {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgba(87, 53, 34, 0.16);
+    border-radius: 14px;
+    background: #ffffff;
+    color: #342117;
+    font: inherit;
+    font-size: 0.88rem;
+    outline: none;
+    transition:
+        border-color 160ms ease,
+        box-shadow 160ms ease;
+}
+
+.group-management-field input,
+.group-management-field select {
+    min-height: 46px;
+    padding: 0 13px;
+}
+
+.group-management-field textarea {
+    min-height: 92px;
+    padding: 12px 13px;
+    resize: vertical;
+    line-height: 1.45;
+}
+
+.group-management-field input:focus,
+.group-management-field textarea:focus,
+.group-management-field select:focus {
+    border-color: #ff6b00;
+    box-shadow:
+        0 0 0 4px rgba(255, 107, 0, 0.09);
+}
+
+.group-management-field input:disabled,
+.group-management-field textarea:disabled,
+.group-management-field select:disabled {
+    background: #f6f1ed;
+    color: #9a8578;
+    cursor: not-allowed;
+}
+
+.group-management-help {
+    margin: 0;
+    color: #8a7365;
+    font-size: 0.73rem;
+    line-height: 1.45;
+}
+
+.group-management-warning {
+    margin: 0;
+    padding: 11px 12px;
+    border: 1px solid rgba(223, 93, 12, 0.16);
+    border-radius: 13px;
+    background: #fff5ed;
+    color: #a84a10;
+    font-size: 0.75rem;
+    line-height: 1.45;
+}
+
+.group-management-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 9px;
+}
+
+.group-management-action,
+.group-management-secondary-action,
+.group-management-danger-action {
+    min-height: 42px;
+    padding: 0 15px;
+    border-radius: 13px;
+    font: inherit;
+    font-size: 0.78rem;
+    font-weight: 850;
+    cursor: pointer;
+    transition:
+        background 160ms ease,
+        border-color 160ms ease,
+        color 160ms ease,
+        transform 160ms ease;
+}
+
+.group-management-action {
+    border: 1px solid #f05b00;
+    background: #f05b00;
+    color: #ffffff;
+}
+
+.group-management-action:hover {
+    border-color: #d84e00;
+    background: #d84e00;
+}
+
+.group-management-secondary-action {
+    border: 1px solid rgba(240, 91, 0, 0.19);
+    background: #fff3e9;
+    color: #d95707;
+}
+
+.group-management-secondary-action:hover {
+    border-color: rgba(240, 91, 0, 0.33);
+    background: #ffe7d4;
+}
+
+.group-management-danger-action {
+    border: 1px solid rgba(203, 66, 44, 0.22);
+    background: #fff3f0;
+    color: #c84833;
+}
+
+.group-management-danger-action:hover {
+    border-color: rgba(203, 66, 44, 0.38);
+    background: #ffe5df;
+    color: #ac3624;
+}
+
+.group-management-action:active,
+.group-management-secondary-action:active,
+.group-management-danger-action:active {
+    transform: translateY(1px);
+}
+
+.group-management-action:focus-visible,
+.group-management-secondary-action:focus-visible,
+.group-management-danger-action:focus-visible {
+    outline: none;
+    box-shadow:
+        0 0 0 4px rgba(255, 107, 0, 0.11);
+}
+
+.group-management-danger-action:focus-visible {
+    box-shadow:
+        0 0 0 4px rgba(203, 66, 44, 0.1);
+}
+
+.group-management-action:disabled,
+.group-management-secondary-action:disabled,
+.group-management-danger-action:disabled {
+    cursor: not-allowed;
+    opacity: 0.58;
+    transform: none;
+}
+
+
+/*
+ * Add-member picker
+ */
+
+.group-management-member-picker {
+    display: grid;
+    gap: 10px;
+}
+
+.group-management-member-options {
+    display: grid;
+    gap: 9px;
+}
+
+.group-management-member-option {
+    cursor: pointer;
+    outline: none;
+    transition:
+        border-color 160ms ease,
+        background 160ms ease,
+        box-shadow 160ms ease;
+}
+
+.group-management-member-option:hover {
+    border-color: rgba(255, 107, 0, 0.24);
+}
+
+.group-management-member-option.selected {
+    border-color: rgba(255, 107, 0, 0.42);
+    background: #fff8f2;
+    box-shadow:
+        0 0 0 3px rgba(255, 107, 0, 0.06);
+}
+
+.group-management-member-option:focus-visible {
+    border-color: #ff6b00;
+    box-shadow:
+        0 0 0 4px rgba(255, 107, 0, 0.1);
+}
+
+.group-management-member-check {
+    display: grid;
+    width: 28px;
+    height: 28px;
+    place-items: center;
+    border: 1px solid rgba(255, 107, 0, 0.2);
+    border-radius: 50%;
+    background: #fff5ed;
+    color: #e45a08;
+    font-size: 0.78rem;
+    font-weight: 900;
+}
+
+.group-management-selected-count {
+    color: #826b5e;
+    font-size: 0.74rem;
+    font-weight: 750;
+}
+
+
+/*
+ * Member management rows
+ */
+
+.group-management-members {
+    display: grid;
+    gap: 10px;
+}
+
+.group-management-member {
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1fr)
+        auto;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 15px;
+    border: 1px solid rgba(87, 53, 34, 0.09);
+    border-radius: 18px;
+    background: #ffffff;
+}
+
+.group-management-member-copy {
+    min-width: 0;
+}
+
+.group-management-member-copy strong {
+    display: block;
+    overflow: hidden;
+    color: #382419;
+    font-size: 0.86rem;
+    line-height: 1.35;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.group-management-member-copy span {
+    display: block;
+    margin-top: 3px;
+    color: #8c7466;
+    font-size: 0.72rem;
+}
+
+.group-management-member-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 7px;
+}
+
+.group-management-role-select {
+    min-height: 36px;
+    padding: 0 30px 0 10px;
+    border: 1px solid rgba(87, 53, 34, 0.13);
+    border-radius: 11px;
+    background: #ffffff;
+    color: #594237;
+    font: inherit;
+    font-size: 0.72rem;
+    font-weight: 800;
+    outline: none;
+}
+
+.group-management-role-select:focus {
+    border-color: #ff6b00;
+    box-shadow:
+        0 0 0 3px rgba(255, 107, 0, 0.09);
+}
+
+.group-management-member-remove {
+    min-height: 36px;
+    padding: 0 11px;
+    border: 1px solid rgba(203, 66, 44, 0.18);
+    border-radius: 11px;
+    background: #fff5f2;
+    color: #c44834;
+    font: inherit;
+    font-size: 0.7rem;
+    font-weight: 850;
+    cursor: pointer;
+}
+
+.group-management-member-remove:hover {
+    border-color: rgba(203, 66, 44, 0.32);
+    background: #ffe9e4;
+}
+
+.group-management-member-remove:focus-visible {
+    outline: none;
+    border-color: #cb422c;
+    box-shadow:
+        0 0 0 3px rgba(203, 66, 44, 0.09);
+}
+
+.group-management-member-remove:disabled,
+.group-management-role-select:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+
+
+/*
+ * Ownership transfer
+ */
+
+.group-management-transfer {
+    display: grid;
+    gap: 10px;
+}
+
+.group-management-transfer-controls {
+    display: grid;
+    grid-template-columns:
+        minmax(0, 1fr)
+        auto;
+    gap: 9px;
+}
+
+.group-management-transfer select {
+    width: 100%;
+    min-height: 44px;
+    padding: 0 12px;
+    border: 1px solid rgba(87, 53, 34, 0.15);
+    border-radius: 13px;
+    background: #ffffff;
+    color: #493328;
+    font: inherit;
+    font-size: 0.8rem;
+    outline: none;
+}
+
+.group-management-transfer select:focus {
+    border-color: #ff6b00;
+    box-shadow:
+        0 0 0 4px rgba(255, 107, 0, 0.09);
+}
+
+
+/*
+ * Danger zone
+ */
+
+.group-management-danger-zone {
+    display: grid;
+    gap: 13px;
+    padding: 15px;
+    border: 1px solid rgba(203, 66, 44, 0.14);
+    border-radius: 18px;
+    background: #fffafa;
+}
+
+.group-management-danger-zone h3 {
+    margin: 0;
+    color: #9f3828;
+    font-size: 0.9rem;
+}
+
+.group-management-danger-zone p {
+    margin: 4px 0 0;
+    color: #8b665e;
+    font-size: 0.75rem;
+    line-height: 1.45;
+}
+
+
+/*
+ * Payment cards
+ */
+
+.group-settlements-list {
+    display: grid;
+    gap: 10px;
+}
+
+.group-settlement-card {
+    display: grid;
+    grid-template-columns:
+        auto
+        minmax(0, 1fr)
+        auto;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 16px;
+    border: 1px solid rgba(87, 53, 34, 0.09);
+    border-radius: 20px;
+    background: #ffffff;
+    box-shadow:
+        0 9px 24px rgba(83, 39, 8, 0.055);
+}
+
+.group-settlement-icon {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border-radius: 14px;
+    background: #eaf8f2;
+    color: #16835c;
+    font-size: 1rem;
+    font-weight: 900;
+}
+
+.group-settlement-copy {
+    min-width: 0;
+}
+
+.group-settlement-copy > strong {
+    display: block;
+    overflow: hidden;
+    color: #352117;
+    font-size: 0.88rem;
+    line-height: 1.35;
+    text-overflow: ellipsis;
+}
+
+.group-settlement-copy > span {
+    display: block;
+    margin-top: 4px;
+    color: #90796c;
+    font-size: 0.74rem;
+    line-height: 1.35;
+}
+
+.group-settlement-note {
+    overflow-wrap: anywhere;
+    color: #675247 !important;
+    font-style: italic;
+}
+
+.group-settlement-side {
+    display: grid;
+    justify-items: end;
+    gap: 7px;
+    min-width: 0;
+}
+
+.group-settlement-side > strong {
+    color: #15835b;
+    font-size: 0.92rem;
+    white-space: nowrap;
+}
+
+.group-settlement-delete {
+    min-height: 28px;
+    padding: 0 10px;
+    border: 1px solid rgba(217, 75, 50, 0.18);
+    border-radius: 999px;
+    background: #fff5f2;
+    color: #ca4935;
+    font: inherit;
+    font-size: 0.68rem;
+    font-weight: 850;
+    cursor: pointer;
+    transition:
+        background 160ms ease,
+        border-color 160ms ease,
+        color 160ms ease;
+}
+
+.group-settlement-delete:hover {
+    border-color: rgba(217, 75, 50, 0.3);
+    background: #ffe9e4;
+    color: #ad3928;
+}
+
+.group-settlement-delete:focus-visible {
+    outline: none;
+    border-color: #d94b32;
+    box-shadow:
+        0 0 0 4px rgba(217, 75, 50, 0.1);
+}
+
+.group-settlement-delete:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.group-settlements-empty {
+    padding: 20px;
+    border: 1px dashed rgba(87, 53, 34, 0.13);
+    border-radius: 20px;
+    background: rgba(255, 250, 246, 0.72);
+    text-align: center;
+}
+
+.group-settlements-empty p {
+    margin: 0;
+    color: #8a7365;
+    font-size: 0.82rem;
+    line-height: 1.5;
+}
+
+
+/*
+ * Expense cards and balance rows
+ */
+
+.group-expense-card {
+    cursor: pointer;
+    outline: none;
+    transition:
+        border-color 160ms ease,
+        box-shadow 160ms ease,
+        transform 160ms ease;
+}
+
+.group-expense-card:hover {
+    border-color: rgba(255, 107, 0, 0.28);
+    box-shadow:
+        0 14px 34px rgba(83, 39, 8, 0.1);
+    transform: translateY(-1px);
+}
+
+.group-expense-card:focus-visible {
+    border-color: #ff6b00;
+    box-shadow:
+        0 0 0 4px rgba(255, 107, 0, 0.13),
+        0 14px 34px rgba(83, 39, 8, 0.1);
+}
+
+.group-expense-card .group-card-copy {
+    overflow: hidden;
+}
+
+.group-expense-personal {
+    display: block;
+    margin-top: 6px;
+    color: #5f493c !important;
+    font-size: 0.76rem !important;
+    font-weight: 700;
+}
+
+.group-expense-balance {
+    display: block;
+    margin-top: 3px;
+    color: #80695c !important;
+    font-size: 0.76rem !important;
+    font-weight: 850;
+}
+
+.group-expense-balance.positive {
+    color: #15835b !important;
+}
+
+.group-expense-balance.negative {
+    color: #d94b32 !important;
+}
+
+.group-expense-value {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 7px;
+    color: #2d1b12;
+    white-space: nowrap;
+}
+
+.group-expense-value strong {
+    color: #2d1b12;
+    font-size: 0.92rem;
+}
+
+.group-expense-value span {
+    color: #bc9e8c;
+    font-size: 1.35rem;
+    line-height: 1;
+}
+
+
+/*
+ * Empty expense state
+ */
+
+.group-expenses-empty {
+    padding: 30px 20px;
+    border: 1px dashed rgba(255, 107, 0, 0.28);
+    border-radius: 24px;
+    background: rgba(255, 248, 242, 0.78);
+    text-align: center;
+}
+
+.group-expenses-empty-symbol {
+    display: grid;
+    width: 54px;
+    height: 54px;
+    place-items: center;
+    margin: 0 auto;
+    border-radius: 18px;
+    background: #fff0e4;
+    color: #f05b00;
+    font-size: 1.5rem;
+    font-weight: 900;
+}
+
+.group-expenses-empty h3 {
+    margin: 14px 0 6px;
+    color: #352117;
+    font-size: 1rem;
+}
+
+.group-expenses-empty p {
+    max-width: 280px;
+    margin: 0 auto;
+    color: #887165;
+    font-size: 0.84rem;
+    line-height: 1.5;
+}
+
+
+@media (max-width: 520px) {
+    .group-balance-card {
+        grid-template-columns: 1fr;
+        align-items: stretch;
+    }
+
+    .group-balance-actions {
+        display: grid;
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(0, 1fr);
+        width: 100%;
+    }
+
+    .group-balance-actions button {
+        width: 100%;
+    }
+
+    .group-management-transfer-controls {
+        grid-template-columns: 1fr;
+    }
+
+    .group-management-transfer-controls button {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 420px) {
+    .group-detail-hero {
+        padding: 21px;
+        border-radius: 24px;
+    }
+
+    .group-detail-currency {
+        top: 21px;
+        right: 21px;
+    }
+
+    .group-balance-card {
+        gap: 15px;
+    }
+
+    .group-balance-actions {
+        gap: 9px;
+    }
+
+    .group-balance-actions .primary-button,
+    .group-balance-actions .secondary-button {
+        min-height: 46px;
+        padding: 0 12px;
+    }
+
+    .group-management-panel {
+        padding: 17px;
+        border-radius: 21px;
+    }
+
+    .group-management-header {
+        gap: 12px;
+    }
+
+    .group-management-section-heading {
+        display: grid;
+    }
+
+    .group-management-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .group-management-actions button {
+        width: 100%;
+    }
+
+    .group-management-member {
+        grid-template-columns: 1fr;
+        align-items: stretch;
+    }
+
+    .group-management-member-actions {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .group-management-role-select {
+        flex: 1 1 150px;
+    }
+
+    .group-settlement-card {
+        grid-template-columns:
+            42px
+            minmax(0, 1fr);
+    }
+
+    .group-settlement-side {
+        grid-column: 2;
+        grid-template-columns:
+            minmax(0, 1fr)
+            auto;
+        align-items: center;
+        justify-items: stretch;
+        width: 100%;
+    }
+
+    .group-settlement-side > strong {
+        justify-self: start;
+    }
+
+    .group-settlement-delete {
+        justify-self: end;
+    }
+
+    .group-expense-card {
+        grid-template-columns:
+            48px
+            minmax(0, 1fr);
+    }
+
+    .group-expense-card .group-card-icon {
+        width: 48px;
+        height: 48px;
+    }
+
+    .group-expense-value {
+        grid-column: 2;
+        justify-content: space-between;
+        width: 100%;
+        margin-top: 5px;
+    }
+}
+
+
+@media (max-width: 340px) {
+    .group-balance-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .group-management-member-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .group-management-role-select,
+    .group-management-member-remove {
+        width: 100%;
+    }
+
+    .group-settlement-side {
+        grid-template-columns: 1fr;
+        justify-items: start;
+    }
+
+    .group-settlement-delete {
+        justify-self: start;
+    }
+}

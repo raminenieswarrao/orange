@@ -1,0 +1,1006 @@
+/*
+ * Add Expense page
+ */
+
+.add-expense-screen {
+    padding-bottom: 96px;
+}
+
+.expense-form {
+    display: grid;
+    gap: 20px;
+}
+
+.expense-form-card {
+    display: grid;
+    gap: 18px;
+    padding: 20px;
+    border: 1px solid rgba(87, 53, 34, 0.1);
+    border-radius: 24px;
+    background: #ffffff;
+    box-shadow:
+        0 14px 34px rgba(83, 39, 8, 0.07);
+}
+
+.expense-field {
+    display: grid;
+    gap: 8px;
+}
+
+.expense-field label,
+.expense-section-title {
+    color: #382218;
+    font-size: 0.87rem;
+    font-weight: 800;
+}
+
+.expense-field input,
+.expense-field textarea,
+.expense-field select {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid rgba(87, 53, 34, 0.18);
+    border-radius: 16px;
+    background: #ffffff;
+    color: #2d1a10;
+    font: inherit;
+    outline: none;
+    transition:
+        border-color 160ms ease,
+        box-shadow 160ms ease,
+        background-color 160ms ease;
+}
+
+.expense-field input,
+.expense-field select {
+    min-height: 50px;
+    padding: 0 15px;
+}
+
+.expense-field textarea {
+    min-height: 88px;
+    padding: 14px 15px;
+    resize: vertical;
+}
+
+.expense-field input:focus,
+.expense-field textarea:focus,
+.expense-field select:focus {
+    border-color: #ff6b00;
+    box-shadow:
+        0 0 0 4px rgba(255, 107, 0, 0.11);
+}
+
+.expense-amount-row {
+    display: grid;
+    grid-template-columns: 90px minmax(0, 1fr);
+    gap: 10px;
+}
+
+.expense-amount-input {
+    position: relative;
+}
+
+.expense-amount-input span {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 16px;
+    color: #805f4d;
+    font-size: 1.05rem;
+    font-weight: 850;
+    pointer-events: none;
+    transform: translateY(-50%);
+}
+
+.expense-amount-input input {
+    padding-left: 34px;
+    font-size: 1.12rem;
+    font-weight: 800;
+}
+
+
+/*
+ * Two-person quick split choices
+ */
+
+.expense-quick-split-field {
+    gap: 10px;
+}
+
+.expense-quick-splits {
+    display: grid;
+    gap: 8px;
+}
+
+.expense-quick-split {
+    display: grid;
+    grid-template-columns:
+        minmax(70px, 0.7fr)
+        minmax(0, 1.6fr)
+        24px;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    min-height: 54px;
+    box-sizing: border-box;
+    padding: 9px 12px;
+    border: 1px solid rgba(87, 53, 34, 0.13);
+    border-radius: 15px;
+    background: #ffffff;
+    color: #765f52;
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+    transition:
+        border-color 160ms ease,
+        background-color 160ms ease,
+        box-shadow 160ms ease,
+        transform 160ms ease;
+}
+
+.expense-quick-split::after {
+    display: grid;
+    width: 20px;
+    height: 20px;
+    place-items: center;
+    border: 1px solid rgba(87, 53, 34, 0.2);
+    border-radius: 50%;
+    background: #ffffff;
+    color: transparent;
+    content: "";
+    font-size: 0.68rem;
+    font-weight: 900;
+}
+
+.expense-quick-split strong {
+    color: #392219;
+    font-size: 0.8rem;
+    font-weight: 850;
+}
+
+.expense-quick-split span {
+    min-width: 0;
+    color: #80695c;
+    font-size: 0.76rem;
+    font-weight: 650;
+    line-height: 1.3;
+}
+
+.expense-quick-split:hover {
+    border-color: rgba(255, 107, 0, 0.38);
+    background: #fffaf6;
+}
+
+.expense-quick-split:focus-visible {
+    outline: 3px solid rgba(255, 107, 0, 0.16);
+    outline-offset: 1px;
+}
+
+.expense-quick-split:active {
+    transform: scale(0.99);
+}
+
+.expense-quick-split.active {
+    border-color: rgba(255, 107, 0, 0.52);
+    background:
+        linear-gradient(
+            145deg,
+            #fff8f2,
+            #fff1e5
+        );
+    box-shadow:
+        0 6px 18px rgba(203, 75, 0, 0.09);
+}
+
+.expense-quick-split.active::after {
+    border-color: #ff6b00;
+    background: #ff6b00;
+    color: #ffffff;
+    content: "✓";
+}
+
+.expense-quick-split.active strong {
+    color: #e65700;
+}
+
+
+/*
+ * Equal, exact and percentage split tabs
+ */
+
+.expense-split-tabs {
+    display: grid;
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+    gap: 6px;
+    padding: 5px;
+    border-radius: 16px;
+    background: #f5eee9;
+}
+
+.expense-split-tab {
+    min-width: 0;
+    min-height: 44px;
+    padding: 0 8px;
+    border: 0;
+    border-radius: 12px;
+    background: transparent;
+    color: #80695c;
+    font: inherit;
+    font-size: 0.76rem;
+    font-weight: 800;
+    line-height: 1.15;
+    cursor: pointer;
+    transition:
+        color 160ms ease,
+        background-color 160ms ease,
+        box-shadow 160ms ease,
+        transform 160ms ease;
+}
+
+.expense-split-tab:hover {
+    color: #d95400;
+}
+
+.expense-split-tab:focus-visible {
+    outline: 3px solid rgba(255, 107, 0, 0.18);
+    outline-offset: 1px;
+}
+
+.expense-split-tab:active {
+    transform: scale(0.98);
+}
+
+.expense-split-tab.active {
+    background: #ffffff;
+    color: #e85a00;
+    box-shadow:
+        0 5px 14px rgba(73, 35, 12, 0.09);
+}
+
+
+/*
+ * Split participants
+ */
+
+.expense-participants {
+    display: grid;
+    gap: 10px;
+}
+
+.expense-participant {
+    cursor: pointer;
+    user-select: none;
+    transition:
+        border-color 160ms ease,
+        background-color 160ms ease,
+        box-shadow 160ms ease;
+}
+
+.expense-participant.is-selected {
+    border-color: rgba(255, 107, 0, 0.55);
+    background: #fff6ef;
+    box-shadow:
+        0 0 0 3px rgba(255, 107, 0, 0.08);
+}
+
+.expense-participant-action {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 10px;
+    margin-left: 8px;
+}
+
+.expense-participant-check {
+    display: grid;
+    width: 26px;
+    height: 26px;
+    flex: 0 0 26px;
+    place-items: center;
+    border: 1px solid rgba(87, 53, 34, 0.22);
+    border-radius: 50%;
+    background: #ffffff;
+    color: transparent;
+    font-size: 0.8rem;
+    font-weight: 900;
+}
+
+.expense-participant.is-selected
+.expense-participant-check {
+    border-color: #ff6b00;
+    background: #ff6b00;
+    color: #ffffff;
+}
+
+
+/*
+ * Exact amount and percentage inputs
+ */
+
+.custom-share-input {
+    width: 90px;
+    min-height: 40px;
+    box-sizing: border-box;
+    padding: 0 10px;
+    border: 1px solid rgba(87, 53, 34, 0.2);
+    border-radius: 12px;
+    background: #ffffff;
+    color: #332017;
+    font: inherit;
+    font-size: 0.82rem;
+    font-weight: 750;
+    text-align: right;
+    outline: none;
+}
+
+.custom-share-input:hover {
+    border-color: rgba(255, 107, 0, 0.42);
+}
+
+.custom-share-input:focus {
+    border-color: #ff6b00;
+    background: #fffdfb;
+    box-shadow:
+        0 0 0 3px rgba(255, 107, 0, 0.1);
+}
+
+.percentage-share-input {
+    width: 96px;
+    border-color: rgba(255, 107, 0, 0.3);
+    color: #df5700;
+}
+
+
+/*
+ * Split validation summary
+ */
+
+.expense-split-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    min-height: 48px;
+    box-sizing: border-box;
+    padding: 13px 15px;
+    border: 1px solid transparent;
+    border-radius: 15px;
+    background: #fff5ed;
+    color: #6f5547;
+    font-size: 0.8rem;
+}
+
+.expense-split-summary strong {
+    color: #e65a00;
+    text-align: right;
+}
+
+.expense-split-summary.invalid {
+    border-color: rgba(201, 44, 44, 0.15);
+    background: #fff3f1;
+}
+
+.expense-split-summary.invalid strong {
+    color: #c92c2c;
+}
+
+
+/*
+ * Form actions
+ */
+
+.expense-form-actions {
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 12px;
+}
+
+.expense-form-actions button {
+    min-height: 50px;
+}
+
+.expense-form-actions button:disabled {
+    cursor: wait;
+    opacity: 0.65;
+}
+
+
+/*
+ * Expense saved success animation
+ */
+
+.expense-success-overlay {
+    position: fixed;
+    z-index: 2000;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    box-sizing: border-box;
+    padding:
+        max(24px, env(safe-area-inset-top))
+        22px
+        max(28px, env(safe-area-inset-bottom));
+    overflow: hidden;
+    background:
+        radial-gradient(
+            circle at 50% 38%,
+            rgba(255, 190, 92, 0.32),
+            rgba(255, 244, 231, 0.9) 38%,
+            rgba(255, 250, 245, 0.98) 72%
+        );
+    backdrop-filter: blur(12px);
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transition:
+        opacity 220ms ease,
+        visibility 220ms ease;
+}
+
+.expense-success-overlay.is-visible {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+}
+
+.expense-success-content {
+    display: grid;
+    width: min(100%, 390px);
+    justify-items: center;
+    gap: 10px;
+    text-align: center;
+}
+
+.expense-success-visual {
+    position: relative;
+    width: min(74vw, 280px);
+    aspect-ratio: 1;
+}
+
+.expense-success-visual::before {
+    position: absolute;
+    inset: 14% 10% 12%;
+    border-radius: 50%;
+    background:
+        radial-gradient(
+            circle,
+            rgba(255, 178, 70, 0.3),
+            rgba(255, 210, 150, 0.1) 52%,
+            transparent 74%
+        );
+    content: "";
+    filter: blur(12px);
+    opacity: 0;
+    transform: scale(0.72);
+}
+
+.expense-success-overlay.is-visible
+.expense-success-visual::before {
+    animation:
+        expense-success-halo 5s ease both;
+}
+
+.expense-success-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    filter:
+        drop-shadow(
+            0 18px 18px rgba(168, 78, 16, 0.14)
+        );
+}
+
+.expense-success-orange-left,
+.expense-success-orange-right {
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+.expense-success-overlay.is-visible
+.expense-success-orange-left {
+    animation:
+        expense-success-left-half 5s
+        cubic-bezier(0.22, 0.84, 0.34, 1)
+        both;
+}
+
+.expense-success-overlay.is-visible
+.expense-success-orange-right {
+    animation:
+        expense-success-right-half 5s
+        cubic-bezier(0.22, 0.84, 0.34, 1)
+        both;
+}
+
+.expense-success-cut {
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center top;
+}
+
+.expense-success-overlay.is-visible
+.expense-success-cut {
+    animation:
+        expense-success-cut-line 5s ease both;
+}
+
+.expense-success-flash {
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+.expense-success-overlay.is-visible
+.expense-success-flash {
+    animation:
+        expense-success-flash 5s ease both;
+}
+
+.expense-success-spark {
+    opacity: 0;
+    transform-box: fill-box;
+    transform-origin: center;
+}
+
+.expense-success-overlay.is-visible
+.expense-success-spark:nth-of-type(1) {
+    animation:
+        expense-success-spark-one 5s ease both;
+}
+
+.expense-success-overlay.is-visible
+.expense-success-spark:nth-of-type(2) {
+    animation:
+        expense-success-spark-two 5s ease both;
+}
+
+.expense-success-overlay.is-visible
+.expense-success-spark:nth-of-type(3) {
+    animation:
+        expense-success-spark-three 5s ease both;
+}
+
+.expense-success-overlay.is-visible
+.expense-success-spark:nth-of-type(4) {
+    animation:
+        expense-success-spark-four 5s ease both;
+}
+
+.expense-success-copy {
+    display: grid;
+    gap: 5px;
+    max-width: 320px;
+    margin-top: -10px;
+    opacity: 0;
+    transform: translateY(12px);
+}
+
+.expense-success-overlay.is-visible
+.expense-success-copy {
+    animation:
+        expense-success-copy 5s ease both;
+}
+
+.expense-success-title {
+    margin: 0;
+    color: #382218;
+    font-size: clamp(1.45rem, 6vw, 1.9rem);
+    font-weight: 900;
+    letter-spacing: -0.035em;
+}
+
+.expense-success-note {
+    margin: 0;
+    color: #8a6754;
+    font-size: 0.92rem;
+    font-weight: 650;
+    line-height: 1.45;
+}
+
+@keyframes expense-success-halo {
+    0%,
+    10% {
+        opacity: 0;
+        transform: scale(0.72);
+    }
+
+    28% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    72% {
+        opacity: 0.9;
+        transform: scale(1.08);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(1.16);
+    }
+}
+
+@keyframes expense-success-left-half {
+    0% {
+        transform:
+            translateX(0)
+            rotate(0deg)
+            scale(0.88);
+    }
+
+    12% {
+        transform:
+            translateX(0)
+            rotate(0deg)
+            scale(1.03);
+    }
+
+    22% {
+        transform:
+            translateX(0)
+            rotate(0deg)
+            scale(1);
+    }
+
+    40% {
+        transform:
+            translateX(-3px)
+            rotate(-0.5deg)
+            scale(1);
+    }
+
+    58% {
+        transform:
+            translateX(-25px)
+            rotate(-5deg)
+            scale(0.99);
+    }
+
+    74%,
+    90% {
+        transform:
+            translateX(-34px)
+            rotate(-7deg)
+            scale(0.98);
+    }
+
+    100% {
+        transform:
+            translateX(-40px)
+            rotate(-7deg)
+            scale(0.96);
+    }
+}
+
+@keyframes expense-success-right-half {
+    0% {
+        transform:
+            translateX(0)
+            rotate(0deg)
+            scale(0.88);
+    }
+
+    12% {
+        transform:
+            translateX(0)
+            rotate(0deg)
+            scale(1.03);
+    }
+
+    22% {
+        transform:
+            translateX(0)
+            rotate(0deg)
+            scale(1);
+    }
+
+    40% {
+        transform:
+            translateX(3px)
+            rotate(0.5deg)
+            scale(1);
+    }
+
+    58% {
+        transform:
+            translateX(25px)
+            rotate(5deg)
+            scale(0.99);
+    }
+
+    74%,
+    90% {
+        transform:
+            translateX(34px)
+            rotate(7deg)
+            scale(0.98);
+    }
+
+    100% {
+        transform:
+            translateX(40px)
+            rotate(7deg)
+            scale(0.96);
+    }
+}
+
+@keyframes expense-success-cut-line {
+    0%,
+    24% {
+        opacity: 0;
+        transform: scaleY(0);
+    }
+
+    32% {
+        opacity: 1;
+        transform: scaleY(0.25);
+    }
+
+    42% {
+        opacity: 1;
+        transform: scaleY(1);
+    }
+
+    55% {
+        opacity: 0.95;
+        transform: scaleY(1);
+    }
+
+    68%,
+    100% {
+        opacity: 0;
+        transform: scaleY(1);
+    }
+}
+
+@keyframes expense-success-flash {
+    0%,
+    40% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+
+    51% {
+        opacity: 0.95;
+        transform: scale(1);
+    }
+
+    63% {
+        opacity: 0.45;
+        transform: scale(1.45);
+    }
+
+    78%,
+    100% {
+        opacity: 0;
+        transform: scale(1.8);
+    }
+}
+
+@keyframes expense-success-spark-one {
+    0%,
+    45% {
+        opacity: 0;
+        transform:
+            translate(0, 0)
+            scale(0.3);
+    }
+
+    57% {
+        opacity: 1;
+        transform:
+            translate(-18px, -24px)
+            scale(1);
+    }
+
+    76%,
+    100% {
+        opacity: 0;
+        transform:
+            translate(-32px, -48px)
+            scale(0.55);
+    }
+}
+
+@keyframes expense-success-spark-two {
+    0%,
+    47% {
+        opacity: 0;
+        transform:
+            translate(0, 0)
+            scale(0.3);
+    }
+
+    60% {
+        opacity: 1;
+        transform:
+            translate(24px, -16px)
+            scale(1.05);
+    }
+
+    79%,
+    100% {
+        opacity: 0;
+        transform:
+            translate(38px, -36px)
+            scale(0.6);
+    }
+}
+
+@keyframes expense-success-spark-three {
+    0%,
+    49% {
+        opacity: 0;
+        transform:
+            translate(0, 0)
+            scale(0.3);
+    }
+
+    63% {
+        opacity: 0.9;
+        transform:
+            translate(-26px, 17px)
+            scale(0.9);
+    }
+
+    80%,
+    100% {
+        opacity: 0;
+        transform:
+            translate(-42px, 32px)
+            scale(0.5);
+    }
+}
+
+@keyframes expense-success-spark-four {
+    0%,
+    51% {
+        opacity: 0;
+        transform:
+            translate(0, 0)
+            scale(0.25);
+    }
+
+    65% {
+        opacity: 1;
+        transform:
+            translate(20px, 23px)
+            scale(0.95);
+    }
+
+    82%,
+    100% {
+        opacity: 0;
+        transform:
+            translate(35px, 42px)
+            scale(0.5);
+    }
+}
+
+@keyframes expense-success-copy {
+    0%,
+    48% {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    61%,
+    88% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+}
+
+
+@media (max-width: 420px) {
+    .expense-form-card {
+        padding: 17px;
+        border-radius: 21px;
+    }
+
+    .expense-amount-row {
+        grid-template-columns:
+            82px minmax(0, 1fr);
+    }
+
+    .expense-quick-split {
+        grid-template-columns:
+            68px minmax(0, 1fr) 22px;
+        gap: 8px;
+        padding-right: 10px;
+        padding-left: 10px;
+    }
+
+    .expense-quick-split strong {
+        font-size: 0.75rem;
+    }
+
+    .expense-quick-split span {
+        font-size: 0.71rem;
+    }
+
+    .expense-split-tab {
+        min-height: 46px;
+        padding-right: 4px;
+        padding-left: 4px;
+        font-size: 0.71rem;
+    }
+
+    .custom-share-input {
+        width: 82px;
+        padding-right: 8px;
+        padding-left: 8px;
+    }
+
+    .percentage-share-input {
+        width: 88px;
+    }
+
+    .expense-form-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .expense-form-actions .primary-button {
+        order: -1;
+    }
+
+    .expense-success-visual {
+        width: min(78vw, 260px);
+    }
+}
+
+
+@media (max-width: 350px) {
+    .expense-quick-split {
+        grid-template-columns:
+            62px minmax(0, 1fr) 20px;
+    }
+
+    .expense-split-tabs {
+        grid-template-columns: 1fr;
+    }
+
+    .expense-split-tab {
+        min-height: 40px;
+    }
+
+    .expense-split-summary {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .expense-split-summary strong {
+        text-align: left;
+    }
+
+    .expense-success-visual {
+        width: min(82vw, 235px);
+    }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+    .expense-success-overlay,
+    .expense-success-overlay *,
+    .expense-success-overlay *::before,
+    .expense-success-overlay *::after {
+        animation-duration: 1ms !important;
+        animation-delay: 0ms !important;
+        transition-duration: 1ms !important;
+    }
+
+    .expense-success-copy {
+        opacity: 1;
+        transform: none;
+    }
+}

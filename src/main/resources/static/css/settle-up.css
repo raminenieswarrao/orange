@@ -1,0 +1,248 @@
+/*
+ * Settle Up page
+ */
+
+.settle-up-screen {
+    padding-bottom: 32px;
+}
+
+.settle-up-form {
+    display: grid;
+    gap: 20px;
+}
+
+.settle-up-card {
+    display: grid;
+    gap: 20px;
+
+    padding: 20px;
+
+    border: 1px solid rgba(87, 53, 34, 0.1);
+    border-radius: 24px;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 14px 34px rgba(83, 39, 8, 0.07);
+}
+
+.settle-up-heading {
+    display: grid;
+    gap: 6px;
+}
+
+.settle-up-heading > span {
+    width: fit-content;
+
+    padding: 5px 10px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(255, 142, 45, 0.12);
+
+    color: #c65c11;
+
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+.settle-up-heading h2 {
+    margin: 0;
+
+    color: #382218;
+
+    font-size: 1.32rem;
+    line-height: 1.2;
+}
+
+.settle-up-heading p {
+    margin: 0;
+
+    color: #826b60;
+
+    font-size: 0.9rem;
+    line-height: 1.55;
+}
+
+.settle-up-field {
+    display: grid;
+    gap: 8px;
+}
+
+.settle-up-field label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+
+    color: #382218;
+
+    font-size: 0.87rem;
+    font-weight: 800;
+}
+
+.settle-up-field label span {
+    color: #aa968b;
+
+    font-size: 0.74rem;
+    font-weight: 700;
+}
+
+.settle-up-field select,
+.settle-up-field input,
+.settle-up-field textarea {
+    width: 100%;
+
+    box-sizing: border-box;
+
+    border:
+        1px solid rgba(87, 53, 34, 0.14);
+
+    border-radius: 16px;
+
+    background: #fffaf6;
+
+    color: #382218;
+
+    font: inherit;
+
+    outline: none;
+
+    transition:
+        border-color 160ms ease,
+        box-shadow 160ms ease,
+        background 160ms ease;
+}
+
+.settle-up-field select,
+.settle-up-field input {
+    min-height: 52px;
+
+    padding:
+        0 14px;
+}
+
+.settle-up-field textarea {
+    min-height: 94px;
+
+    padding: 14px;
+
+    resize: vertical;
+
+    line-height: 1.45;
+}
+
+.settle-up-field select:focus,
+.settle-up-field input:focus,
+.settle-up-field textarea:focus {
+    border-color:
+        rgba(231, 108, 24, 0.7);
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(255, 132, 37, 0.1);
+}
+
+.settle-up-field select:disabled,
+.settle-up-field input:disabled,
+.settle-up-field textarea:disabled {
+    cursor: not-allowed;
+
+    opacity: 0.65;
+}
+
+.settle-up-direction {
+    display: flex;
+    justify-content: center;
+
+    margin:
+        -4px 0;
+}
+
+.settle-up-direction span {
+    display: grid;
+    place-items: center;
+
+    width: 34px;
+    height: 34px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fff3e8,
+            #ffe1c7
+        );
+
+    color: #d6691f;
+
+    font-size: 1.1rem;
+    font-weight: 900;
+}
+
+.settle-up-money-input {
+    position: relative;
+}
+
+.settle-up-money-input > span {
+    position: absolute;
+
+    top: 50%;
+    left: 14px;
+
+    z-index: 1;
+
+    transform:
+        translateY(-50%);
+
+    pointer-events: none;
+
+    color: #a66d48;
+
+    font-size: 0.82rem;
+    font-weight: 800;
+}
+
+.settle-up-money-input input {
+    padding-left: 58px;
+}
+
+.settle-up-actions {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1.35fr);
+
+    gap: 12px;
+}
+
+.settle-up-actions button {
+    min-height: 52px;
+}
+
+.settle-up-actions button:disabled {
+    cursor: not-allowed;
+
+    opacity: 0.65;
+}
+
+
+/*
+ * Small screen support
+ */
+
+@media (max-width: 360px) {
+    .settle-up-card {
+        padding: 17px;
+    }
+
+    .settle-up-actions {
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Orange",
+  "short_name": "Orange",
+  "description": "Split life. Share simply.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fffaf5",
+  "theme_color": "#ff6b00",
+  "icons": [
+    {
+      "src": "/assets/orange-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
