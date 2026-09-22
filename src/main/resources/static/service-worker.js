@@ -1,4 +1,4 @@
-const CACHE_NAME = 'orange-shell-v20';
+const CACHE_NAME = 'orange-shell-v26';
 
 const APP_SHELL = [
     '/',
@@ -18,6 +18,8 @@ const APP_SHELL = [
     '/js/core/supabase-client.js',
     '/js/core/auth.js',
     '/js/core/navigation.js',
+
+    '/js/auth/auth-page.js',
 
     '/js/shared/person-card.js',
 

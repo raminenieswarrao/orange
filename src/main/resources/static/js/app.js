@@ -6,8 +6,10 @@ const ROUTE_STORAGE_KEY =
     'orange.currentRoute';
 
 let signedInUser = null;
+let passwordRecoveryActive = false;
 
 let auth;
+let authPage;
 let navigation;
 let friendsPage;
 let groupsPage;
@@ -41,6 +43,11 @@ function findElements() {
     elements.profileMenuName =
         document.querySelector(
             '#profileMenuName'
+        );
+
+    elements.profileMenuChangePassword =
+        document.querySelector(
+            '#profileMenuChangePassword'
         );
 
     elements.profileMenuSignOut =
@@ -238,6 +245,7 @@ function loadStylesheet(href) {
 async function loadModules() {
     [
         auth,
+        authPage,
         navigation,
         friendsPage,
         groupsPage,
@@ -247,6 +255,7 @@ async function loadModules() {
         personCard
     ] = await Promise.all([
         import('./core/auth.js'),
+        import('./auth/auth-page.js'),
         import('./core/navigation.js'),
         import('./friends/friends-page.js'),
         import('./groups/groups-page.js'),
@@ -1586,6 +1595,51 @@ function handleHomeGroupClick(event) {
 
 
 /**
+ * Completes an email-or-username password sign in.
+ *
+ * The Supabase session is already installed by
+ * auth.js before this callback runs.
+ */
+async function handlePasswordSignedIn(user) {
+    if (!user) {
+        return;
+    }
+
+    passwordRecoveryActive = false;
+
+    renderSignedInUser(user);
+
+    await restoreSavedRoute();
+}
+
+
+/**
+ * Completes a password-recovery flow.
+ */
+async function handlePasswordUpdated(user) {
+    passwordRecoveryActive = false;
+
+    if (user) {
+        renderSignedInUser(user);
+    }
+
+    clearSavedRoute();
+
+    await openHome();
+}
+
+
+/**
+ * Opens the signed-in change-password dialog.
+ */
+function handleChangePasswordClick() {
+    closeProfileMenu();
+
+    authPage.openChangePasswordDialog();
+}
+
+
+/**
  * Starts Google authentication.
  */
 async function handleGoogleSignIn() {
@@ -1682,9 +1736,12 @@ function resetHomeDashboard() {
  */
 function handleSignedOut() {
     signedInUser = null;
+    passwordRecoveryActive = false;
 
     clearSavedRoute();
     closeProfileMenu();
+
+    authPage.resetAuthPage();
 
     friendsPage.resetFriendsPage();
     groupsPage.resetGroupsPage();
@@ -1731,6 +1788,22 @@ function handleAuthStateChange(
         return;
     }
 
+    if (event === 'PASSWORD_RECOVERY') {
+        passwordRecoveryActive = true;
+
+        if (session?.user && user) {
+            renderSignedInUser(user);
+        }
+
+        clearSavedRoute();
+
+        navigation.showScreen('auth');
+
+        authPage.showPasswordRecovery();
+
+        return;
+    }
+
     if (session?.user && user) {
         renderSignedInUser(user);
     }
@@ -1749,6 +1822,11 @@ function bindEvents() {
     elements.profileButton.addEventListener(
         'click',
         handleProfileButtonClick
+    );
+
+    elements.profileMenuChangePassword.addEventListener(
+        'click',
+        handleChangePasswordClick
     );
 
     elements.profileMenuSignOut.addEventListener(
@@ -1933,14 +2011,26 @@ async function initializeApplication() {
 
         initializeActivity();
 
-        bindEvents();
+        authPage.initializeAuthPage({
+            onSignedIn:
+                handlePasswordSignedIn,
 
-        const session =
-            await auth.getSession();
+            onPasswordUpdated:
+                handlePasswordUpdated
+        });
+
+        bindEvents();
 
         await auth.onAuthStateChange(
             handleAuthStateChange
         );
+
+        const session =
+            await auth.getSession();
+
+        if (passwordRecoveryActive) {
+            return;
+        }
 
         if (session?.user) {
             renderSignedInUser(

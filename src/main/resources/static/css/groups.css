@@ -3,7 +3,17 @@
  */
 
 .groups-screen {
-    padding-bottom: 96px;
+    padding:
+        max(22px, env(safe-area-inset-top))
+        20px
+        calc(108px + env(safe-area-inset-bottom));
+
+    background:
+        linear-gradient(
+            180deg,
+            #fff8f2,
+            #fffdfb
+        );
 }
 
 .groups-content {
@@ -22,6 +32,70 @@
 .create-group-panel h2 {
     margin: 0;
     font-size: 1.1rem;
+}
+
+
+/*
+ * Primary Create action in Groups header
+ */
+#groupsCreateButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-width: 78px;
+    min-height: 38px;
+
+    padding: 0 16px;
+
+    border: 0;
+    border-radius: 999px;
+
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff8124,
+            #ff6200
+        );
+
+    font-size: 0.78rem;
+    font-weight: 850;
+
+    box-shadow:
+        0 8px 18px rgba(255, 107, 0, 0.22);
+
+    transition:
+        transform 140ms ease,
+        box-shadow 160ms ease,
+        background 160ms ease;
+}
+
+#groupsCreateButton:hover {
+    background:
+        linear-gradient(
+            135deg,
+            #ff8b32,
+            #f85a00
+        );
+
+    box-shadow:
+        0 10px 22px rgba(255, 107, 0, 0.28);
+
+    transform: translateY(-1px);
+}
+
+#groupsCreateButton:active {
+    transform: scale(0.97);
+}
+
+#groupsCreateButton:focus-visible {
+    outline: none;
+
+    box-shadow:
+        0 0 0 4px rgba(255, 107, 0, 0.14),
+        0 9px 20px rgba(255, 107, 0, 0.24);
 }
 
 .create-group-panel {
@@ -275,6 +349,13 @@
 }
 
 @media (max-width: 420px) {
+    #groupsCreateButton {
+        min-width: 72px;
+        min-height: 36px;
+        padding: 0 14px;
+        font-size: 0.75rem;
+    }
+
     .create-group-panel {
         padding: 17px;
         border-radius: 21px;
